@@ -87,64 +87,36 @@ public class Task1 {
 
     private static void write_values(ArrayList<String> strings, String team1, String team2, int j) {
         int result = decode_result(strings.get(j));
-        if (result == -1) {
-            if (teams.containsKey(team1)) {
-                teams.put(team1,
-                        new Pair<>(teams.get(team1).getKey() + 3,
-                                teams.get(team1).getValue() + 1));
-            } else {
-                teams.put(team1, new Pair<>(3, 1));
-            }
-            if (teams.containsKey(team2)) {
-                teams.put(team2,
-                        new Pair<>(teams.get(team2).getKey(),
-                                teams.get(team2).getValue() + 1));
-            } else {
-                teams.put(team2, new Pair<>(0, 1));
-            }
-        } else if (result == 1) {
-            if (teams.containsKey(team1)) {
-                teams.put(team1,
-                        new Pair<>(teams.get(team1).getKey(),
-                                teams.get(team1).getValue() + 1));
-            } else {
-                teams.put(team1, new Pair<>(0, 1));
-            }
-            if (teams.containsKey(team2)) {
-                teams.put(team2,
-                        new Pair<>(teams.get(team2).getKey() + 3,
-                                teams.get(team2).getValue() + 1));
-            } else {
-                teams.put(team2, new Pair<>(3, 1));
-            }
+        int points1, points2;
+        if (result == 1) {
+            points1 = 3;
+            points2 = 0;
+        } else if (result == -1) {
+            points1 = 0;
+            points2 = 3;
         } else {
-            if (teams.containsKey(team1)) {
-                teams.put(team1,
-                        new Pair<>(teams.get(team1).getKey() + 1,
-                                teams.get(team1).getValue() + 1));
-            } else {
-                teams.put(team1, new Pair<>(1, 1));
-            }
-            if (teams.containsKey(team2)) {
-                teams.put(team2,
-                        new Pair<>(teams.get(team2).getKey() + 1,
-                                teams.get(team2).getValue() + 1));
-            } else {
-                teams.put(team2, new Pair<>(1, 1));
-            }
+            points1 = 1;
+            points2 = 1;
+        }
+        if (teams.containsKey(team1)) {
+            teams.put(team1,
+                    new Pair<>(teams.get(team1).getKey() + points1,
+                            teams.get(team1).getValue() + 1));
+        } else {
+            teams.put(team1, new Pair<>(points1, 1));
+        }
+        if (teams.containsKey(team2)) {
+            teams.put(team2,
+                    new Pair<>(teams.get(team2).getKey() + points2,
+                            teams.get(team2).getValue() + 1));
+        } else {
+            teams.put(team2, new Pair<>(points2, 1));
         }
     }
 
     private static int decode_result(String s) {
         Pair<Integer, Integer> pair = get_result(s);
-        int output = 0;
-        if (pair.getValue() > pair.getKey()) {
-            output = -1;
-        }
-        if (pair.getKey() > pair.getValue()) {
-            output = 1;
-        }
-        return output;
+        return pair.getValue().compareTo(pair.getKey());
     }
 
     private static Pair<Integer, Integer> get_result(String s) {
