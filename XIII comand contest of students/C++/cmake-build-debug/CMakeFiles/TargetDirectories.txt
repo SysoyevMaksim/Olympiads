@@ -1,0 +1,3 @@
+C:/Olympiads/XIII comand contest of students/C++/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Olympiads/XIII comand contest of students/C++/cmake-build-debug/CMakeFiles/C__.dir
+C:/Olympiads/XIII comand contest of students/C++/cmake-build-debug/CMakeFiles/rebuild_cache.dir
